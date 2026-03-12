@@ -1,15 +1,14 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Nexus Gradient - Hex Gradient Generator</title>
+    <title>EsraMc Gradient - Hex Gradient Generator</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <div class="app-container">
@@ -17,20 +16,22 @@
             <div class="header-top">
                 <div class="logo">
                     <i class="fas fa-fire"></i>
-                    <h1>Nexus Gradient</h1>
+                    <h1>EsraMc Gradient</h1>
                 </div>
-                <a href="https://discord.gg/2Tchtx8k9" target="_blank" class="discord-btn">
-                    <i class="fab fa-discord"></i> Join Discord
+                <a href="https://discord.gg/QcNP9JZx78" target="_blank" class="discord-btn">
+                    <i class="fab fa-discord"></i>
+                    Join Discord
                 </a>
             </div>
-            <p>Generate professional hex gradient text for Minecraft and web projects.</p>
+            <p>Generate professional hex gradient text for Minecraft and web projects with a modern interface.</p>
         </header>
 
         <main>
             <section class="settings">
                 <div class="card">
                     <h2><i class="fas fa-keyboard"></i> Input Text</h2>
-                    <textarea id="inputText" placeholder="Type here...">Nexus Studio</textarea>
+                    <textarea id="inputText" placeholder="Type here to generate a gradient...">RedRanger</textarea>
+                    
                     <div class="toolbar">
                         <button id="boldBtn" title="Bold"><i class="fas fa-bold"></i></button>
                         <button id="italicBtn" title="Italic"><i class="fas fa-italic"></i></button>
@@ -42,19 +43,26 @@
 
                 <div class="card">
                     <h2><i class="fas fa-fill-drip"></i> Colors</h2>
+                    
                     <div class="option-group">
+                        <label>Color Amount</label>
                         <div class="number-input">
                             <button id="decreaseColorBtn"><i class="fas fa-minus"></i></button>
                             <input type="number" id="colorAmountInput" value="2" min="2" max="10">
                             <button id="increaseColorBtn"><i class="fas fa-plus"></i></button>
                         </div>
                         <div class="utility-toolbar">
-                            <button id="randomizeBtn" title="Randomize"><i class="fas fa-dice"></i></button>
-                            <button id="reverseBtn" title="Reverse"><i class="fas fa-exchange-alt"></i></button>
-                            <button id="invertBtn" title="Invert"><i class="fas fa-adjust"></i></button>
+                            <button id="randomizeBtn" title="Randomize Colors"><i class="fas fa-dice"></i></button>
+                            <button id="copyColorsBtn" title="Copy Colors"><i class="fas fa-copy"></i></button>
+                            <button id="reverseBtn" title="Reverse Colors"><i class="fas fa-exchange-alt"></i></button>
+                            <button id="invertBtn" title="Invert Colors"><i class="fas fa-adjust"></i></button>
+                            <button id="nightModeBtn" title="Night Mode"><i class="fas fa-moon"></i></button>
                         </div>
                     </div>
-                    <div id="colorInputs" class="color-list"></div>
+
+                    <div id="colorInputs" class="color-list">
+                        <!-- Colors will be added here -->
+                    </div>
                 </div>
             </section>
 
@@ -62,8 +70,9 @@
                 <div class="display-main">
                     <div class="card preview-card">
                         <h2><i class="fas fa-eye"></i> Preview</h2>
-                        <div id="previewArea" class="preview-text">Nexus Studio</div>
+                        <div id="previewArea" class="preview-text">RedRanger</div>
                     </div>
+
                     <div class="card output-card">
                         <h2><i class="fas fa-terminal"></i> Output</h2>
                         <div class="output-wrapper">
@@ -74,29 +83,80 @@
                 </div>
 
                 <div class="display-side">
+                    <div class="card shadow-card">
+                    <div class="card-header-with-toggle" id="shadowHeader">
+                        <h2><i class="fas fa-clone"></i> Text Shadow</h2>
+                        <i class="fas fa-chevron-down" id="shadowChevron"></i>
+                    </div>
+                    
+                    <div class="shadow-settings" id="shadowSettings">
+                        <p class="warning-text">Warning: Text shadow only works with JSON or MiniMessage formatting!</p>
+                        <div class="toggle-container" style="margin-bottom: 1.5rem;">
+                            <label class="switch">
+                                <input type="checkbox" id="shadowToggle">
+                                <span class="slider round"></span>
+                            </label>
+                            <span class="toggle-label-text">Custom Text Shadow</span>
+                        </div>
+                        
+                        <div id="extraShadowOptions" style="display: none;">
+                            <div class="option-group">
+                                <label>Color Amount</label>
+                                <div class="number-input">
+                                    <button id="decreaseShadowColorBtn"><i class="fas fa-minus"></i></button>
+                                    <input type="number" id="shadowColorAmountInput" value="1" min="1" max="10">
+                                    <button id="increaseShadowColorBtn"><i class="fas fa-plus"></i></button>
+                                </div>
+                                <div class="utility-toolbar">
+                                    <button id="randomizeShadowBtn" title="Randomize Shadow Colors"><i class="fas fa-dice"></i></button>
+                                    <button id="copyShadowColorsBtn" title="Copy Shadow Colors"><i class="fas fa-copy"></i></button>
+                                    <button id="reverseShadowBtn" title="Reverse Shadow Colors"><i class="fas fa-exchange-alt"></i></button>
+                                    <button id="invertShadowBtn" title="Invert Shadow Colors"><i class="fas fa-adjust"></i></button>
+                                </div>
+                            </div>
+
+                            <div id="shadowColorInputs" class="color-list">
+                                <!-- Shadow colors will be added here -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
                     <div class="card options-card">
                         <h2><i class="fas fa-cog"></i> Options</h2>
                         <div class="option-group">
-                            <label>Color Format</label>
+                            <label for="colorFormat">Color Format</label>
                             <select id="colorFormat">
-                                <option value="&#rrggbb">&#rrggbb</option>
+                                <option value="&#rrggbb" selected>&#rrggbb</option>
                                 <option value="MiniMessage">MiniMessage</option>
                                 <option value="JSON">JSON</option>
+                                <option value="§x§r§r§g§g§b§b">§x§r§r§g§g§b§b</option>
+                                <option value="&x&r&r&g&g&b&b">&x&r&r&g&g&b&b</option>
+                                <option value="<#rrggbb>"><#rrggbb></option>
+                                <option value="[COLOR=#rrggbb][/COLOR]">[COLOR=#rrggbb][/COLOR]</option>
                                 <option value="#rrggbb">#rrggbb</option>
                             </select>
                         </div>
-                        <div class="toggle-container">
-                            <label class="switch">
-                                <input type="checkbox" id="lowercaseToggle">
-                                <span class="slider round"></span>
-                            </label>
-                            <span>Lowercase Hex</span>
+                        <div class="option-group" style="margin: 2rem 0 0.5rem 0;">
+                            <div class="toggle-container">
+                                <label class="switch">
+                                    <input type="checkbox" id="lowercaseToggle">
+                                    <span class="slider round"></span>
+                                </label>
+                                <div class="toggle-text" style="display: flex; flex-direction: column; margin-left: 0.5rem;">
+                                    <span style="font-weight: 600; font-size: 0.9rem;">Lowercase Hex Codes</span>
+                                    <small style="color: var(--text-secondary); font-size: 0.75rem;">Use lowercase for all output hex codes</small>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
             </section>
         </main>
     </div>
-    <script src="script.js"></script>
-</body>
+    <footer>
+        <p>&copy; 2026 Reserved by EsraMc Studio</p>
+    </footer>
+    <script src="/script.js"></script>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9db4a96f3dfb33b7',t:'MTc3MzMzODA0Mg=='};var a=document.createElement('script');a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
