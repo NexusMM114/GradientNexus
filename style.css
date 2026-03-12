@@ -1,0 +1,75 @@
+/* --- Global Glass Variables --- */
+:root {
+    --glass-bg: rgba(30, 41, 59, 0.4);
+    --glass-border: rgba(255, 255, 255, 0.1);
+    --glass-reflection: rgba(255, 255, 255, 0.05);
+    --blur-amount: 12px;
+}
+
+/* --- Color Picker Rows --- */
+.color-row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    /* Glass Effect */
+    background: var(--glass-bg);
+    backdrop-filter: blur(var(--blur-amount));
+    -webkit-backdrop-filter: blur(var(--blur-amount));
+    padding: 10px;
+    border-radius: 12px;
+    margin-bottom: 10px;
+    border: 1px solid var(--glass-border);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+}
+
+.hex-text {
+    background: transparent;
+    border: none;
+    color: var(--accent);
+    font-family: 'JetBrains Mono', monospace;
+    width: 80px;
+    outline: none;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.row-controls button {
+    padding: 2px 6px;
+    font-size: 0.7rem;
+    background: rgba(15, 23, 42, 0.6); /* Translucent buttons */
+    border: 1px solid var(--glass-border);
+    border-radius: 4px;
+    color: white;
+    backdrop-filter: blur(4px);
+}
+
+/* --- Toolbar Active States --- */
+.toolbar button.active {
+    background: var(--primary);
+    box-shadow: 0 0 15px var(--primary-glow);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    color: white;
+}
+
+/* --- Preview Text Styling --- */
+.preview-text {
+    font-size: 2.5rem;
+    text-align: center;
+    padding: 2rem;
+    word-break: break-all;
+    /* Deep Glass Look */
+    background: rgba(2, 6, 23, 0.5);
+    backdrop-filter: blur(20px);
+    border: 1px solid var(--glass-border);
+    border-radius: 12px;
+    min-height: 120px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* --- Custom Scrollbar --- */
+#colorInputs::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 10px;
+    border: 1px solid var(--glass-border);
+}
